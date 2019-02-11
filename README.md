@@ -1,5 +1,18 @@
 
 # Deep RL Arm Manipulation
+## Saminda Abeyruwan
+
+### Introduction
+
+Deep reinforcement learning has enabled robotic systems to learn control or 
+predictive policies directly from camera inputs and raw pixels. In this 
+project, a simulated 3 degree-of-freedom robotic arm is trained to reach and 
+touch an object of interest using a deep Q-network. We have simulated two 
+tasks, and show that the robot is successfully leaned the abilities to 
+complete the scenarios. Please refer to [writeup](writeup.pdf) for detail 
+explanation.
+
+## Project Details
 
 This project is based on the Nvidia open source project "jetson-reinforcement" developed by [Dustin Franklin](https://github.com/dusty-nv). The goal of the project is to create a DQN agent and define reward functions to teach a robotic arm to carry out two primary objectives:
 
