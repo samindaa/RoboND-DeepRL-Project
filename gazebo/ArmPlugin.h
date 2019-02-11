@@ -88,7 +88,7 @@ private:
 	int	    totalRuns;
 	int      runHistoryIdx;
 	int	    runHistoryMax;
-	bool     runHistory[20];
+	bool     runHistory[100];
 
 	physics::ModelPtr model;
 	event::ConnectionPtr updateConnection;
