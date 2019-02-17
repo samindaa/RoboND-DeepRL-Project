@@ -121,26 +121,29 @@ For the second task, we have used the following reward structure:
 %\end{enumerate}
 
 \section{Hyperparameters}
+\label{sec:hyperparameters}
 
-We have used images of size $64 \times 64 \times 3$. The \textit{RMSprop} optimizer has been used in both tasks, while setting the learning rate to $0.1$. Neither tasks required changing the learning rate. We set the replay memory $10000$, and a batch size of $32$ has been used. We have enabled the LSTM mode, and the LSTM size has been set to $512$. The exploration rate, $\gamma$, has been set to $0.9$ and annihilated to $0.05$ over $200$ steps. We have used position control method to control the arm. Please refer to the definitions, $\mathsf{INPUT\_WIDTH}$, $\mathsf{INPUT\_HEIGHT}$, $\mathsf{OPTIMIZER}$, $\mathsf{LEARNING\_RATE}$, $\mathsf{REPLAY\_MEMORY}$, $\mathsf{BATCH\_SIZE}$, $\mathsf{USE\_LSTM}$, $\mathsf{LSTM\_SIZE}$,  $\mathsf{GAMMA}$, $\mathsf{EPS\_START}$, $\mathsf{EPS\_END}$, $\mathsf{EPS\_DECAY}$, and $\mathsf{VELOCITY\_CONTROL}$, in the associated code for the value binding.  
+We have used images of size $64 \times 64 \times 3$. The \textit{RMSprop} optimizer has been used in both tasks, while setting the learning rate to $0.1$. Neither tasks required changing the learning rate. We set the replay memory $10000$, and a batch size of $32$ has been used. We have enabled the LSTM mode, and the LSTM size has been set to $512$. The exploration rate, $\gamma$, has been set to $0.9$ and annihilated to $0.05$ over $200$ steps. $\alpha$ and $time\_penalty$  have been set to 0.9 and 0.5 respectively. We have used position control method to control the arm. Please refer to the definitions, $\mathsf{INPUT\_WIDTH}$, $\mathsf{INPUT\_HEIGHT}$, $\mathsf{OPTIMIZER}$, $\mathsf{LEARNING\_RATE}$, $\mathsf{REPLAY\_MEMORY}$, $\mathsf{BATCH\_SIZE}$, $\mathsf{USE\_LSTM}$, $\mathsf{LSTM\_SIZE}$,  $\mathsf{GAMMA}$, $\mathsf{EPS\_START}$, $\mathsf{EPS\_END}$, $\mathsf{EPS\_DECAY}$, and $\mathsf{VELOCITY\_CONTROL}$, in the associated code for the value binding.  
 
 \section{Results}
 
-The robot has learned successful control policies for both tasks within 200 episodes. We have let the first task, Fig. \ref{fig:task1}, to train over 600 episodes to reach 99\% of local accuracy. An instance of the completed second tasks is shown in Fig. \ref{fig:task2}. Both tasks were simulated using the same set of parameters.  Both tasks were completed using position based control. 
+The two tasks have been trained with the hyperparameters described in Sec. \ref{sec:hyperparameters}. The robot has completed the first task within 113 episodes, and achieved 100\% accuracy over a minimum of 100 runs around 191 episodes, and the performance has been held consistently. The performance of the robot is shown in  Fig. \ref{fig:task1}. We have observed that without the time penalty, the robot has started oscillating near the goal, but, not reaching the goal as expected. We have also observed that the robot has taken a longer time to reach the target performance for LSTM output size less than 512.  
 
-\begin{figure*}[thpb]
+\begin{figure}[thpb]
       \centering
       \includegraphics[width=\linewidth]{task1}
       \caption{Task 1: have any part of the robot arm touch the object of interest.}
       \label{fig:task1}
-\end{figure*}
+\end{figure}
 
-\begin{figure*}[thpb]
+The second task has achieved the target performance within 100 episodes. We have used the same set of parameter as described in Sec. \ref{sec:hyperparameters} and in task one. Fig. \ref{fig:task2} shows the development of the target performance. Both tasks have used position based control. We have also experimented with velocity based control, which has shown unstable training trajectories, that has required more parameter tuning, which is not reported in this document. Finally, we conclude that  the robot has learned successful control policies for both tasks less than 200 episodes.
+
+\begin{figure}[thpb]
       \centering
       \includegraphics[width=\linewidth]{task2}
       \caption{Task 2: have only the gripper base of the robot arm touch the object.}
       \label{fig:task2}
-\end{figure*}
+\end{figure}
 
 
 \section{Conclusion / Future work}
